@@ -17,6 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.vikash.airpush.ui.theme.AirPushTheme
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DeviceDiscoveryScreen(onDeviceSelected: (WifiP2pDevice) -> Unit) {
     val context = LocalContext.current
@@ -38,7 +39,7 @@ fun DeviceDiscoveryScreen(onDeviceSelected: (WifiP2pDevice) -> Unit) {
                 .padding(16.dp)
         ) {
             items(devices) { device ->
-                DeviceItem(device, onDeviceSelected)
+                DeviceItem(device = device, onClick = { onDeviceSelected(device) })
             }
         }
     }
@@ -67,12 +68,12 @@ fun discoverDevices(
 }
 
 @Composable
-fun DeviceItem(device: WifiP2pDevice, onClick: (WifiP2pDevice) -> Unit) {
+fun DeviceItem(device: WifiP2pDevice, onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp)
-            .clickable { onClick(device) },
+            .clickable { onClick() },
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
