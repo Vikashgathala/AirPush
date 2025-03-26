@@ -114,8 +114,6 @@ cd airpush
 
 ---
 
-## 🚧 Roadmap
-
 -
 
 Stay tuned for updates! 🚀
